@@ -9,4 +9,8 @@ module.exports = withSass(withFonts(withImages({
   },
 })));
 
-
+// module.exports = {
+//   env: {
+//     customKey: 'my-value',
+//   }
+// }

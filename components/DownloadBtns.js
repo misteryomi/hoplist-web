@@ -3,7 +3,7 @@ import React from "react"
 
 const DownloadBtns = (props) => (
   <>
-                        <div class={`d-flex flex-row ${props.footer && 'justify-content-center'} store-btns`}>
+                        <div class={`d-flex flex-row ${props.footer && 'justify-content-center'} store-btns flex-wrap`}>
                             <div class={`store-btn ${props.inverse && 'store-btn-inverse'}`}>
                                 <a href="https://play.google.com/store/apps/details?id=com.clevify" target="_blank">
                                     <div class="row">

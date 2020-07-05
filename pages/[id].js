@@ -11,16 +11,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JoinModal from '../components/JoinModal';
 import ShieldCheckIcon from 'mdi-react/ShieldCheckIcon';
 import moment from 'moment';
+import axios from '../utils/axios';
 
 export default function Home({data}) {
 
-  const handleClosePayment = () => {
-    console.log("Payment closed");
-  }
+
+  console.log({data})
+
+
 
 
   if(!data.status) {
-    return (<div>Eroor</div> )
+    return (<div>An error occured</div> )
   }
 
   const activity = data.data;
@@ -29,7 +31,6 @@ export default function Home({data}) {
       {activity.images.length > 0 && (
         <div className="activity-image" style={{backgroundImage: "url('"+ activity.images[0]+"')"}}></div>
       )}
-
         <Row>
           <Col>
             <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -48,7 +49,7 @@ export default function Home({data}) {
                   Share {' '} <Icon style={{marginLeft: 5}} icon={faShareAlt} />
                 </div>
               )} 
-              url={`https://www.hoplist.co/activity/${data._id}`}
+              url={`https://www.hoplist.co/activity/${activity._id}`}
               />
             </div>
           </Col>
@@ -59,7 +60,7 @@ export default function Home({data}) {
         <hr/>
               
         <Row>
-          <Col md={2}>
+          <Col xs={5} md={2}>
               <Alert color="success" className="inline">
                 <Icon icon={faCalendar} />
                 <div className="ml-3">
@@ -69,8 +70,8 @@ export default function Home({data}) {
               </Alert>
           
           </Col>
-          <Col md={8} />
-          <Col md={2}>
+          <Col xs={2} md={8} />
+          <Col xs={5} md={2}>
             <div className="text-right" >
               <Alert color="success" className="inline">
                 <Icon icon={faClock} />
@@ -94,45 +95,54 @@ export default function Home({data}) {
         </Row>   
 
         <br/>
-        <Alert color="success">
-          <Row>
-            <Col sm={1}>
-              <div className="notice-shield">
-                <div style={{width: 40, height: 40}}>
-                  {/* <ShieldCheckIcon size={16} /> */}
-                  <Icon icon={faShieldAlt} size="4.5em" fixedWidth={false} color="#fff" />
+        <div className="text-center text-md-left">
+          <Alert color="success">
+            <Row>
+              <Col md={1}>
+                <div className="notice-shield mb-3 ">
+                  <div style={{width: 40, height: 40}}>
+                    {/* <ShieldCheckIcon size={16} /> */}
+                    <Icon icon={faShieldAlt} size="4.5em" fixedWidth={false} color="#fff" />
+                  </div>
                 </div>
-              </div>
+              </Col>
+              <Col className="justify-center">
+                You can only view the exact location and/or link when you join the activity. Your host will be notified of your attendance.
+              </Col>
+            </Row>
+          </Alert>
+        </div>
+        <hr/>
+        
+        <div className="text-center text-md-left">
+
+          <h3>Your Host</h3>
+
+          <Row>
+            <Col sm={2}>
+              <Avatar color="#FC4A1A" src={activity.user.profileImage} round name={`${activity.user.firstName} ${activity.user.lastName}`}  />
             </Col>
-            <Col className="justify-center">
-              You can only view the exact location and/or link when you join the activity. Your host will be notified of your attendance.
+            <Col>            
+            <br/>
+              <h3>{`${activity.user.firstName} ${activity.user.lastName}`}</h3>
+              <span className="text-gray">Creator</span>
+            </Col>
+          </Row>  
+
+          <br/>
+          <div> 
+
+            <p className="text-wrap">{activity.user.description}</p> 
+
+          </div>
+          <Row>
+            <Col md={3}>
+              <Button outline color="danger" block>Follow</Button>
             </Col>
           </Row>
-        </Alert>
+        </div>
 
-        <hr/>
 
-        <h3>Your Host</h3>
-
-        <Row>
-          <Col sm={2}>
-             <Avatar color="#FC4A1A" src={activity.user.profileImage} round name={`${activity.user.firstName} ${activity.user.lastName}`}  />
-          </Col>
-          <Col>            
-          <br/>
-            <h3>{`${activity.user.firstName} ${activity.user.lastName}`}</h3>
-            <span className="text-gray">Creator</span>
-          </Col>
-        </Row>  
-
-        <br/>
-
-        <p>{activity.user.description}</p> 
-        <Row>
-          <Col md={3}>
-            <Button outline color="danger" block>Follow</Button>
-          </Col>
-        </Row>
         {/* <Rave
           pay_button_text="Join activity"
           className="btn btn-success"
@@ -168,7 +178,7 @@ export default function Home({data}) {
               <Col md={4}>
                 <div  className="text-right">
 
-                    <JoinModal buttonLabel="Join Activity" />
+                    <JoinModal activity_id={activity._id} buttonLabel="Join Activity" />
                   
                 </div>
               </Col>
@@ -180,27 +190,21 @@ export default function Home({data}) {
 }
 
 export async function getStaticProps(ctx) {
-  const res = await fetch(`http://localhost:3001/activities/${ctx.params.id}`)
-  const json = await res.json();
-  return { props: {data: json} }
+  const res = await axios(`/activities/${ctx.params.id}`)
+  const json = await res.data;
 
-  // By returning { props: posts }, the Blog component
-  // will receive `posts` as a prop at build time
-  return {
-    props: {
-      posts,
-    },
-  }
+  return { props: {data: json} }
 }
 
 // This function gets called at build time
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
-  const res = await fetch('http://localhost:3001/activities')
-  const activities = await res.json()
+  const res = await axios('/activities')
+  const activities = await res.data.data
 
+  console.log(res);
   // Get the paths we want to pre-render based on posts
-  const paths = activities.data.map((activity) => ({
+  const paths = activities.length > 0 && activities.map((activity) => ({
     params: { id: activity._id },
   }))
 

@@ -106,6 +106,12 @@ h4 {
     display: flex;
 }
 
+@media  (max-width:990px) {
+    .notice-shield {
+        margin: 0 auto;
+    }
+}
+
 .fixed-footer {
     position: fixed;
     bottom: 0;
@@ -175,6 +181,7 @@ h4 {
         font-weight: bold!important;
         font-family: "Poppins-Medium";
         max-width: 500px;
+        font-size: 25px;
 
     }
 }
@@ -217,7 +224,7 @@ h4 {
 
 
 .store-btn .apple-store-icon {
-    background-image: url('/static/apple-white.png');
+    background-image: url('/static/apple.png');
 }
 
 .store-btn .play-store-icon {
@@ -234,7 +241,7 @@ h4 {
 }
 
 .store-btn:hover .apple-store-icon {
-    background-image: url('/static/apple.png');
+    background-image: url('/static/apple-white.png');
 }
 
 .store-btn-inverse {

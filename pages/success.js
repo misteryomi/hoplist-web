@@ -10,10 +10,16 @@ import Rave from 'react-flutterwave-rave'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JoinModal from '../components/JoinModal';
 import Share from '../components/Share';
+import axios from '../utils/axios';
 
 
-export default function Success() {
+function Success({data, query}) {
 
+  
+  if(!data.status) {
+    return (<div>An error occured</div> )
+  }
+  const ticket = data.data;
 
   return (
     <div className="text-center">
@@ -25,12 +31,12 @@ export default function Success() {
           <Col md="8" className="mx-auto">
             <h3>Hooray! Successful!!</h3>
 
-            <p>You've successfully joined <strong>Roll and enjoy an Italian mainstay with a multi-generational local family</strong>, the details of the activity has been sent to <strong>Harrylekan@gmail.com</strong></p>
+            <p>You've successfully joined <strong>{ticket.activity.title}</strong>, the details of the activity has been sent to <strong>{ticket.email}</strong></p>
 
             <p>You can share this activity for your friends on</p>
 
 
-            <Share />
+            <Share url={`https://www.hoplist.co/activity/${ticket.activityId}`} />
           </Col>
         </Row>
 
@@ -38,3 +44,11 @@ export default function Success() {
      </div>
   )
 }
+
+Success.getInitialProps = async ({query}) => {
+  const res = await axios(`/tickets/${query.ticket}`)
+  const json = await res.data
+  return { data: json, query }
+}
+
+export default Success
