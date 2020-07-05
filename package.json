@@ -28,5 +28,8 @@
     "react-flutterwave-rave": "^1.0.4",
     "react-toast-notifications": "^2.4.0",
     "reactstrap": "^8.4.1"
+  },
+  "engines": {
+    "node": "13.x"
   }
 }
