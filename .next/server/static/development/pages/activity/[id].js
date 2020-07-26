@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -350,7 +350,7 @@ eval("// client.js\nvar axios = __webpack_require__(/*! axios */ \"axios\");\n\n
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!**************************************!*\
   !*** multi ./pages/activity/[id].js ***!
   \**************************************/
