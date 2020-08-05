@@ -7,7 +7,7 @@ const Icon = (props) => {
 
   return (
     // <div style={{width: 20, height: 20,margin: 5}}>
-        <FontAwesomeIcon  fixedWidth style={{fontSize: 10}}  {...props}/>
+        <FontAwesomeIcon  fixedWidth style={{fontSize: 12}}  {...props}/>
     // </div> 
   );
 }

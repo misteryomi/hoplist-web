@@ -54,40 +54,25 @@ const Share = (props) => {
   }
 
   return (
-    <div>
+    <div style={{marginLeft: 10}}>
             <Row>
-                <Col md={1} />
+                {/* <Col md={1} /> */}
             {
                 shareOptions.map((option, index) => 
-                    <Col md={2} key={index}>
+                    <Col md={1} key={index}>
                         <a href={`${option.link}${props.url}`} target="_blank" class="social-share">
                             <div class="social-share-icon">
                                 <div class="icon-container">
                                     <Icon icon={option.icon} fixedWidth={false} />                                    
                                 </div>
                             </div>
-                         {option.name}
+                         {/* {option.name} */}
                         </a>
                     </Col>
                 )
             }
             </Row>
-            <hr/>
-            <h4 className="text-left">Copy Link</h4>
-            <Form inline >
-                <FormGroup style={{width: '80%'}} >
-                    <Input type="text" style={{width: '100%'}}  name="password" id="link" placeholder={props.url} disabled/>
-                </FormGroup>
-                {' '}
-                {/* <Toast title="Copy" content="Link copied to clipboard"/> */}
-                <CopyToClipboard text={props.url} onCopy={handleCopy}>
-                <Button color="dark">
-                    Copy
-                </Button>
-                </CopyToClipboard>
-            </Form>
 
-            <hr/>
     </div>
   );
 }

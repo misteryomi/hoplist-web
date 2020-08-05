@@ -8,10 +8,12 @@ import DownloadBtns from '../../components/DownloadBtns';
 import Avatar from 'react-avatar';
 import Rave from 'react-flutterwave-rave'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import JoinModal from '../../components/JoinModal';
+import JoinForm from '../../components/JoinForm';
 import ShieldCheckIcon from 'mdi-react/ShieldCheckIcon';
 import moment from 'moment';
 import axios from '../../utils/axios';
+import Share from '../../components/Share';
+import SocialLinks from '../../components/SocialLinks';
 
 export default function Home({data}) {
 
@@ -31,160 +33,70 @@ export default function Home({data}) {
       {activity.images.length > 0 && (
         <div className="activity-image" style={{backgroundImage: "url('"+ activity.images[0]+"')"}}></div>
       )}
+
+        <h4>You are invited to join</h4>
+        <h1 className="activity-title">{activity.title}</h1>
+
         <Row>
-          <Col>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
-              <div style={{width: 20, height: 20, marginRight: 20}}>
-                <Icon icon={faHeart} fixedWidth={false}/>
-              </div>
-              <div style={{width: 20, height: 20}}>
-                <Icon icon={faCommentAlt}  fixedWidth={false} size='xs'/>
-              </div>
-            </div>
-          </Col>
-          <Col>
-            <div className="text-right">
-              <ShareModal buttonLabel={(
-                <div>
-                  Share {' '} <Icon style={{marginLeft: 5}} icon={faShareAlt} />
-                </div>
-              )} 
-              url={`https://www.hoplist.co/activity/${activity._id}`}
-              />
-            </div>
-          </Col>
+           <Col md={6}>
+              <div class="date-time">
+                <Icon icon={faCalendar} /> &nbsp; &nbsp; {moment(activity.dateTime).format('DD MMM')}
+              </div><br/>
+              <hr/>
+              <h4>About this activity</h4>
+              <p>{activity.description}</p>
+
+              <br/><br/>
+              <Row>
+                <Col md={2}>
+                  <Avatar size="80" color="#FC4A1A" src={activity.user.profileImage} round name={`${activity.user.firstName} ${activity.user.lastName}`}  />
+                </Col>
+                <Col>            
+                <br/>
+                  <h3>{`${activity.user.firstName} ${activity.user.lastName}`}</h3>
+                  <span className="text-gray">Creator</span>
+                </Col>
+              </Row>  
+
+              <hr/>
+
+              <h4>Share with friends</h4>
+              <p>You can share this activity with your friends via:</p>
+
+              <Share url="#" />
+            </Col>
+           <Col md={6}> 
+              <JoinForm />
+            </Col>
         </Row>
         <hr/>
-        <h1 className="activity-title">{activity.title}</h1>
-        <p>{activity.description}</p>
-        <hr/>
-              
-        <Row>
-          <Col xs={5} md={2}>
-              <Alert color="success" className="inline">
-                <Icon icon={faCalendar} />
-                <div className="ml-3">
-                  Date
-                  <h3>{moment(activity.dateTime).format('DD MMM')}</h3>
-                </div>
-              </Alert>
-          
-          </Col>
-          <Col xs={2} md={8} />
-          <Col xs={5} md={2}>
-            <div className="text-right" >
-              <Alert color="success" className="inline">
-                <Icon icon={faClock} />
-                <div className="ml-3">
-                  Time
-                  <h3>{moment(activity.dateTime).format('hh:mma')}</h3>
-                </div>
-              </Alert>
-            </div>
-          </Col>
-        </Row>   
 
-        <hr/>
-        <Row>
-          <Col><span style={{fontSize: 15}}>Location</span></Col>
-          <Col>
-            <div className="text-right" >
-             <h3><Icon icon={faMapMarkerAlt } /> Not set</h3>
-            </div>
-          </Col>
-        </Row>   
 
-        <br/>
-        <div className="text-center text-md-left">
-          <Alert color="success">
-            <Row>
-              <Col md={1}>
-                <div className="notice-shield mb-3 ">
-                  <div style={{width: 40, height: 40}}>
-                    {/* <ShieldCheckIcon size={16} /> */}
-                    <Icon icon={faShieldAlt} size="4.5em" fixedWidth={false} color="#fff" />
-                  </div>
-                </div>
-              </Col>
-              <Col className="justify-center">
-                You can only view the exact location and/or link when you join the activity. Your host will be notified of your attendance.
-              </Col>
-            </Row>
-          </Alert>
-        </div>
-        <hr/>
+
         
-        <div className="text-center text-md-left">
-
-          <h3>Your Host</h3>
-
-          <Row>
-            <Col sm={2}>
-              <Avatar color="#FC4A1A" src={activity.user.profileImage} round name={`${activity.user.firstName} ${activity.user.lastName}`}  />
-            </Col>
-            <Col>            
-            <br/>
-              <h3>{`${activity.user.firstName} ${activity.user.lastName}`}</h3>
-              <span className="text-gray">Creator</span>
-            </Col>
-          </Row>  
-
-          <br/>
-          <div> 
-
-            <p className="text-wrap">{activity.user.description}</p> 
-
-          </div>
-          <Row>
-            <Col md={3}>
-              <Button outline color="danger" block>Follow</Button>
-            </Col>
-          </Row>
-        </div>
-
-
-        {/* <Rave
-          pay_button_text="Join activity"
-          className="btn btn-success"
-          metadata={[
-            { metaname: 'Tickets', metavalue: 4 },
-            // { metaname: 'Hostel', metavalue: this.state.hostel },
-            // { metaname: 'Room', metavalue: this.state.room_number }
-          ]}
-          payment_method="card"
-          customer_email="yomiomotoso@gmail.com"
-          customer_phone="08163904277"
-          amount={"" + 200 * 5 + ""}
-          ravePubKey="FLWPUBK_TEST-05f5a3f5af15ba9da55f47ed4ecb07c5-X"
-          // callback={this.callback}
-          onclose={handleClosePayment}
-        /> */}
 
         <div className="footer">
             <h2>Try something new with your community today</h2>
             <p>Download the App</p>
 
             <DownloadBtns inverse />
+
         </div>
 
-        <div style={{height: 100}}></div>
-        <div className="fixed-footer">
-          <Container>
+        <div class="m-4">
+
             <Row>
-              <Col md={8}>
-                Price <br/>
-                <h3>Free</h3>
+              <Col md="10">
+                <a href="/privacy" className="text-dark mr-3">Privacy</a>
+                <a href="/terms" className="text-dark">Terms of use</a>
               </Col>
-              <Col md={4}>
-                <div  className="text-right">
+              <Col md="2">
+                  <SocialLinks />
+              </Col>
+            </Row>
 
-                    <JoinModal activity_id={activity._id} buttonLabel="Join Activity" />
-                  
-                </div>
-              </Col>
-            </Row>     
-          </Container>
         </div>
+
      </div>
   )
 }
