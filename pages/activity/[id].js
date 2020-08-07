@@ -34,13 +34,13 @@ export default function Home({data}) {
         <div className="activity-image" style={{backgroundImage: "url('"+ activity.images[0]+"')"}}></div>
       )}
 
-        <h4>You are invited to join</h4>
-        <h1 className="activity-title">{activity.title}</h1>
+        <h4 class="mt-4">You are invited to join</h4>
+        <h1 className="activity-title mb-4">{activity.title}</h1>
 
         <Row>
            <Col md={6}>
               <div class="date-time">
-                <Icon icon={faCalendar} /> &nbsp; &nbsp; {moment(activity.dateTime).format('DD MMM')}
+                <Icon icon={faCalendar} /> &nbsp; &nbsp; {moment(activity.dateTime).format('dddd DD MMM, HH:MM a')}
               </div><br/>
               <hr/>
               <h4>About this activity</h4>
@@ -51,6 +51,7 @@ export default function Home({data}) {
                 <Col md={2}>
                   <Avatar size="80" color="#FC4A1A" src={activity.user.profileImage} round name={`${activity.user.firstName} ${activity.user.lastName}`}  />
                 </Col>
+                <Col md="1"/>
                 <Col>            
                 <br/>
                   <h3>{`${activity.user.firstName} ${activity.user.lastName}`}</h3>
