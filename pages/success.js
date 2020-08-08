@@ -35,8 +35,12 @@ function Success({data, query}) {
 
             <p>You can share this activity for your friends on</p>
 
+            <Row>
+            <div class="col-md-5 mx-auto">
+              <Share nocap url={`https://www.hoplist.co/activity/${ticket.activityId}`} />
+            </div>
+            </Row>
 
-            <Share url={`https://www.hoplist.co/activity/${ticket.activityId}`} />
           </Col>
         </Row>
 

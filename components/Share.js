@@ -59,7 +59,7 @@ const Share = (props) => {
                 {/* <Col md={1} /> */}
             {
                 shareOptions.map((option, index) => 
-                    <Col md={1} key={index}>
+                    <Col md={1} className={props.nocap ? "ml-3" : "ml-2"} key={index}>
                         <a href={`${option.link}${props.url}`} target="_blank" class="social-share">
                             <div class="social-share-icon">
                                 <div class="icon-container">
