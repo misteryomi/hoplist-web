@@ -133,7 +133,7 @@ const JoinForm = (props) => {
         <div style={{marginTop: 20}}>
             <Alert color="danger">
                 <h4 style={{fontWeight: 'normal'}}>Note</h4>
-                <p>By clicking "Join Activity", I accept the <a href="#">Terms of Service</a> and have read the <a href="#">Privacy Policy</a>. I agree that Hoplist may <a href="#">share my information</a> with the Host.</p>
+                <p>By clicking "Join Activity", I accept the Terms of Service and have read the <a href="https://hoplihttps://hoplist.co/privacy.htmlst.co/privacy.html">Privacy Policy</a>. I agree that Hoplist may share my information with the Host.</p>
             </Alert>
         </div>
 

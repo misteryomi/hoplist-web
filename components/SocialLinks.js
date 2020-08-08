@@ -34,7 +34,7 @@ const SocialLinks = () => {
             {
                 shareOptions.map((option, index) => 
                     <Col md={2} key={index}>
-                        <a href={`${option.url}`} target="_blank" class="social-share">
+                        <a href={`${option.link}`} target="_blank" class="social-share">
                             <div class="social-share-icon">
                                 <div class="icon-container">
                                     <Icon icon={option.icon} fixedWidth={false} />                                    

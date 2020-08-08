@@ -17,20 +17,20 @@ const shareOptions = [
         icon: faTwitter,
         link: 'https://twitter.com/share?url=',
     },
-    {
-        name: 'WhatsApp',
-        icon: faWhatsapp,
-        link: "https://api.whatsapp.com/send?text=",
-    },
+    // {
+    //     name: 'WhatsApp',
+    //     icon: faWhatsapp,
+    //     link: "https://api.whatsapp.com/send?text=",
+    // },
     {
         name: 'Instagram',
         icon: faInstagram,
-        link: 'https://www.facebook.com/sharer.php?u=',
+        link: 'https://www.instagram.com/?url=',
     },
     {
         name: 'LinkedIn',
         icon: faLinkedin,
-        link: 'https://www.linkedin.com/shareArticle?url=',
+        link: 'https://www.linkedin.com/shareArticle?mini=true&url=',
     },
 ]
 
@@ -59,7 +59,7 @@ const Share = (props) => {
                 {/* <Col md={1} /> */}
             {
                 shareOptions.map((option, index) => 
-                    <Col md={1} className={props.nocap ? "ml-3" : "ml-2"} key={index}>
+                    <Col xs={1} className={props.nocap ? "ml-3" : "ml-2"} key={index}>
                         <a href={`${option.link}${props.url}`} target="_blank" class="social-share">
                             <div class="social-share-icon">
                                 <div class="icon-container">

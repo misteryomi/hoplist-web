@@ -5,7 +5,7 @@ const DownloadBtns = (props) => (
   <>
                         <div class={`d-flex flex-row ${props.footer && 'justify-content-center'} store-btns flex-wrap`}>
                             <div class={`store-btn ${props.inverse && 'store-btn-inverse'}`}>
-                                <a href="https://play.google.com/store/apps/details?id=com.clevify" target="_blank">
+                                <a href="https://play.google.com/store/apps/details?id=com.hoplist" target="_blank">
                                     <div class="row">
                                         <div class="col-4">
                                             <div class="icon play-store-icon" style={{backgroundImage: "url('/static/images/play.png')"}}></div>

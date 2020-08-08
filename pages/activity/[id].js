@@ -40,7 +40,7 @@ export default function Home({data}) {
         <Row>
            <Col md={6}>
               <div class="date-time">
-                <Icon icon={faCalendar} /> &nbsp; &nbsp; {moment(activity.dateTime).format('dddd DD MMM, HH:MM a')}
+                <Icon icon={faCalendar} /> &nbsp; &nbsp; {moment(activity.dateTime).format('dddd, MMM DD - HH:MMA')}
               </div><br/>
               <hr/>
               <h4>About this activity</h4>
@@ -64,7 +64,7 @@ export default function Home({data}) {
               <h4>Share with friends</h4>
               <p>You can share this activity with your friends via:</p>
 
-              <Share url="#" />
+              <Share  url={`https://hoplist.co/activity/${activity._id}`} />
             </Col>
            <Col md={6}> 
               <JoinForm activity_id={activity._id} />
@@ -88,8 +88,8 @@ export default function Home({data}) {
 
             <Row>
               <Col md="10">
-                <a href="/privacy" className="text-dark mr-3">Privacy</a>
-                <a href="/terms" className="text-dark">Terms of use</a>
+                <a href="https://hoplist.co/privacy.html" className="text-dark mr-3">Privacy</a>
+                <a href="#" className="text-dark">Terms of use</a>
               </Col>
               <Col md="2">
                   <SocialLinks />
