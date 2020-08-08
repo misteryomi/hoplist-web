@@ -48,6 +48,7 @@ const JoinForm = (props) => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const toggle = () => setModal(!modal);
   const { addToast } = useToasts()
@@ -64,6 +65,7 @@ const JoinForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setError(null);
     setLoading(true);
 
     const data = {
@@ -91,7 +93,8 @@ const JoinForm = (props) => {
 
     } catch(e) {
         setLoading(false);
-        console.log(e);
+        setError(e.response ? e.response.data.message : 'An error occured. Please try again')
+        console.log({e});
     }
 
   }
@@ -102,18 +105,20 @@ const JoinForm = (props) => {
         <div>
         <small style={{fontSize: 10 }}>Your name will be used by your host to identify you and We'll use your email address to send you details of the activity</small>
         <br/><br/>
+
+          {error && <><Alert color="warning">{error}</Alert><br/></>}
             <Form action="#" method="post" onSubmit={handleSubmit}>
                     <FormGroup>
                         <Label for="email">First name *</Label>
-                        <Input type="text" name="first_name" id="email" onChange={(e) => setFirstName(e.target.value)} />
+                        <Input type="text" required name="first_name" id="email" onChange={(e) => setFirstName(e.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label for="lastName">Last name *</Label>
-                        <Input type="text" name="last_name" id="lastName" onChange={(e) => setLastName(e.target.value)} />
+                        <Input type="text" required name="last_name" id="lastName" onChange={(e) => setLastName(e.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label for="email">Email *</Label>
-                        <Input type="email" name="email" id="email" onChange={(e) => setEmail(e.target.value)} />
+                        <Input type="email" required name="email" id="email" onChange={(e) => setEmail(e.target.value)} />
                     </FormGroup>
                     <FormGroup>
                         <Label for="phone">Mobile Number (optional)</Label>

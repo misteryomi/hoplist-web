@@ -67,7 +67,7 @@ export default function Home({data}) {
               <Share url="#" />
             </Col>
            <Col md={6}> 
-              <JoinForm />
+              <JoinForm activity_id={activity._id} />
             </Col>
         </Row>
         <hr/>
