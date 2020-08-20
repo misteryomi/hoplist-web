@@ -10,10 +10,14 @@ import Rave from 'react-flutterwave-rave'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import JoinForm from '../../components/JoinForm';
 import ShieldCheckIcon from 'mdi-react/ShieldCheckIcon';
-import moment from 'moment';
+// import moment from 'moment';
 import axios from '../../utils/axios';
 import Share from '../../components/Share';
 import SocialLinks from '../../components/SocialLinks';
+var moment = require('moment-timezone');
+
+
+
 
 export default function Home({data}) {
 
@@ -40,7 +44,7 @@ export default function Home({data}) {
         <Row>
            <Col md={6}>
               <div class="date-time">
-                <Icon icon={faCalendar} /> &nbsp; &nbsp; {moment(activity.dateTime).format('dddd, MMM DD - HH:MMA')}
+                <Icon icon={faCalendar} /> &nbsp; &nbsp; { activity._id == 'G6fPM7GvcrWc4vwg3taV' ? 'Fri, 21st Aug - 07:00 PM' : moment(activity.dateTime).format('dddd, MMM DD - HH:MMA')}
               </div><br/>
               <hr/>
               <h4>About this activity</h4>

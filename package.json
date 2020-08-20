@@ -18,6 +18,7 @@
     "axios": "^0.19.2",
     "mdi-react": "^7.3.0",
     "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
     "next": "9.4.4",
     "next-images": "^1.4.0",
     "nextjs-fonts": "^0.22.0",
