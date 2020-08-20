@@ -102,26 +102,33 @@ export default function Home({data}) {
   )
 }
 
-export async function getStaticProps(ctx) {
+export async function getServerSideProps(ctx) {
   const res = await axios(`/activities/${ctx.params.id}`)
   const json = await res.data;
 
-  return { props: {data: json} }
+  return { props: {data: json} } 
 }
 
-// This function gets called at build time
-export async function getStaticPaths() {
-  // Call an external API endpoint to get posts
-  const res = await axios('/activities')
-  const activities = await res.data.data
+// export async function getStaticProps(ctx) {
+//   const res = await axios(`/activities/${ctx.params.id}`)
+//   const json = await res.data;
 
-  console.log(res);
-  // Get the paths we want to pre-render based on posts
-  const paths = activities.length > 0 && activities.map((activity) => ({
-    params: { id: activity._id },
-  }))
+//   return { props: {data: json} }
+// }
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths, fallback: false }
-}
+// // This function gets called at build time
+// export async function getStaticPaths() {
+//   // Call an external API endpoint to get posts
+//   const res = await axios('/activities')
+//   const activities = await res.data.data
+
+//   console.log(res);
+//   // Get the paths we want to pre-render based on posts
+//   const paths = activities.length > 0 && activities.map((activity) => ({
+//     params: { id: activity._id },
+//   }))
+
+//   // We'll pre-render only these paths at build time.
+//   // { fallback: false } means other routes should 404.
+//   return { paths, fallback: false }
+// }
