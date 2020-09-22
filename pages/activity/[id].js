@@ -14,9 +14,8 @@ import ShieldCheckIcon from 'mdi-react/ShieldCheckIcon';
 import axios from '../../utils/axios';
 import Share from '../../components/Share';
 import SocialLinks from '../../components/SocialLinks';
-var moment = require('moment-timezone');
 
-
+const moment = require('moment');
 
 
 export default function Home({data}) {
@@ -44,7 +43,7 @@ export default function Home({data}) {
         <Row>
            <Col md={6}>
               <div class="date-time">
-                <Icon icon={faCalendar} /> &nbsp; &nbsp; { activity._id == 'G6fPM7GvcrWc4vwg3taV' ? 'Fri, 21st Aug - 07:00 PM' : moment(activity.dateTime).format('dddd, MMM DD - HH:MMA')}
+                <Icon icon={faCalendar} /> &nbsp; &nbsp; { moment(moment(activity.dateTime).unix()).format('dddd, DD MMM YYYY - hh:mmA')}
               </div><br/>
               <hr/>
               <h4>About this activity</h4>
